@@ -2,7 +2,7 @@
   "version": 1,
   "project": "mujoco-warp",
   "project_url": "https://github.com/google-deepmind/mujoco_warp",
-  "repo": ".",
+  "repo": "https://github.com/google-deepmind/mujoco_warp",
   "build_command": [
     "python -m build --wheel -o {build_cache_dir}"
   ],
