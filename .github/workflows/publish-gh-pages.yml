@@ -30,11 +30,3 @@ jobs:
       - name: Generate ASV gh-pages
         run: asv gh-pages --rewrite
 
-      - name: Push html directory to gh-pages branch
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: gh-pages
-          force: true
-          directory: ./asv/html
-
