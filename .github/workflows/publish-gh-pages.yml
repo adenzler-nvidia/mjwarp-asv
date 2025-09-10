@@ -25,6 +25,11 @@ jobs:
       - name: Generate ASV gh-pages
         run: asv gh-pages
 
+      - name: Set up git user
+        run: |
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+          git config --global user.name "${{ github.actor }}"
+
       - name: Push html directory to gh-pages branch
         uses: ad-m/github-push-action@master
         with:
