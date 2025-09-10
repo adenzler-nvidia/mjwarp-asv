@@ -36,5 +36,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages
           force: true
-          directory: ./html
+          directory: ./asv/html
 
