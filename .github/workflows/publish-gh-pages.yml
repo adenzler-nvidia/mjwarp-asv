@@ -1,0 +1,35 @@
+name: Build and Push ASV gh-pages
+
+on:
+  push:
+    branches:
+      - main  # or your default branch
+
+jobs:
+  asv-ghpages:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install ASV
+        run: pip install asv
+
+      - name: Generate ASV gh-pages
+        run: asv gh-pages
+
+      - name: Push html directory to gh-pages branch
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          force: true
+          directory: ./html
+
