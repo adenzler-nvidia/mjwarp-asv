@@ -28,7 +28,7 @@ jobs:
           git config --global user.name "${{ github.actor }}"
 
       - name: Generate ASV gh-pages
-        run: asv gh-pages --overwrite
+        run: asv gh-pages --rewrite
 
       - name: Push html directory to gh-pages branch
         uses: ad-m/github-push-action@master
