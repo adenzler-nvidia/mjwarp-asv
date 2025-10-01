@@ -1,7 +1,50 @@
 {
     "benchmark.AlohaPot.track_metric": {
-        "code": "class BenchmarkSuite:\n    def track_metric(self, metrics, fn):\n      return metrics[fn]\n\nAlohaPot.setup_cache = lambda s: mujoco_warp.test_util.BenchmarkSuite.setup_cache(s)",
+        "code": "class BenchmarkSuite:\n    def track_metric(self, metrics, fn):\n      return metrics[fn]\n\nAlohaPot.setup_cache = lambda s: benchmark.BenchmarkSuite.setup_cache(s)",
         "name": "benchmark.AlohaPot.track_metric",
+        "param_names": [
+            "function"
+        ],
+        "params": [
+            [
+                "'jit_duration'",
+                "'solver_niter_mean'",
+                "'solver_niter_p95'",
+                "'device_memory_allocated'",
+                "'step'",
+                "'step.forward'",
+                "'step.forward.fwd_position'",
+                "'step.forward.fwd_position.kinematics'",
+                "'step.forward.fwd_position.com_pos'",
+                "'step.forward.fwd_position.camlight'",
+                "'step.forward.fwd_position.crb'",
+                "'step.forward.fwd_position.tendon_armature'",
+                "'step.forward.fwd_position.collision'",
+                "'step.forward.fwd_position.make_constraint'",
+                "'step.forward.fwd_position.transmission'",
+                "'step.forward.sensor_pos'",
+                "'step.forward.fwd_velocity'",
+                "'step.forward.fwd_velocity.com_vel'",
+                "'step.forward.fwd_velocity.passive'",
+                "'step.forward.fwd_velocity.rne'",
+                "'step.forward.fwd_velocity.tendon_bias'",
+                "'step.forward.sensor_vel'",
+                "'step.forward.fwd_actuation'",
+                "'step.forward.fwd_acceleration'",
+                "'step.forward.fwd_acceleration.xfrc_accumulate'",
+                "'step.forward.sensor_acc'",
+                "'step.forward.solve'",
+                "'step.euler'"
+            ]
+        ],
+        "setup_cache_key": "benchmark:114",
+        "type": "track",
+        "unit": "unit",
+        "version": "f1865afa96e71065b1d317f432d3ba032872121714a48c3729ab0bf8049592f3"
+    },
+    "benchmark.AlohaSdf.track_metric": {
+        "code": "class BenchmarkSuite:\n    def track_metric(self, metrics, fn):\n      return metrics[fn]\n\nAlohaSdf.setup_cache = lambda s: benchmark.BenchmarkSuite.setup_cache(s)",
+        "name": "benchmark.AlohaSdf.track_metric",
         "param_names": [
             "function"
         ],
@@ -40,11 +83,11 @@
         "setup_cache_key": "benchmark:115",
         "type": "track",
         "unit": "unit",
-        "version": "d8b89504ac63797e3d9238f91e2ff68b986aedc6cde703eda173bbd144555d6c"
+        "version": "119ca919ec65f5ca833f00e50a476b9fadc23b5ee069931c162ea264b875c37c"
     },
-    "benchmark.AlohaSdf.track_metric": {
-        "code": "class BenchmarkSuite:\n    def track_metric(self, metrics, fn):\n      return metrics[fn]\n\nAlohaSdf.setup_cache = lambda s: mujoco_warp.test_util.BenchmarkSuite.setup_cache(s)",
-        "name": "benchmark.AlohaSdf.track_metric",
+    "benchmark.ApptronikApolloFlat.track_metric": {
+        "code": "class BenchmarkSuite:\n    def track_metric(self, metrics, fn):\n      return metrics[fn]\n\nApptronikApolloFlat.setup_cache = lambda s: benchmark.BenchmarkSuite.setup_cache(s)",
+        "name": "benchmark.ApptronikApolloFlat.track_metric",
         "param_names": [
             "function"
         ],
@@ -83,11 +126,11 @@
         "setup_cache_key": "benchmark:116",
         "type": "track",
         "unit": "unit",
-        "version": "0165c7a4027dc9eaceb88ed01010b9a823efd5fdcc876ac69f42933644443afb"
+        "version": "9be50ac165e18bd2b33bc453433bff32452a3074708f354c9438669adec01969"
     },
-    "benchmark.ApptronikApolloFlat.track_metric": {
-        "code": "class BenchmarkSuite:\n    def track_metric(self, metrics, fn):\n      return metrics[fn]\n\nApptronikApolloFlat.setup_cache = lambda s: mujoco_warp.test_util.BenchmarkSuite.setup_cache(s)",
-        "name": "benchmark.ApptronikApolloFlat.track_metric",
+    "benchmark.ApptronikApolloHfield.track_metric": {
+        "code": "class BenchmarkSuite:\n    def track_metric(self, metrics, fn):\n      return metrics[fn]\n\nApptronikApolloHfield.setup_cache = lambda s: benchmark.BenchmarkSuite.setup_cache(s)",
+        "name": "benchmark.ApptronikApolloHfield.track_metric",
         "param_names": [
             "function"
         ],
@@ -126,10 +169,10 @@
         "setup_cache_key": "benchmark:117",
         "type": "track",
         "unit": "unit",
-        "version": "4a838bbae17b568318433ae58d616cb5d207d820ddcd1982b4145b4f097d9105"
+        "version": "33efd5dbfcfd049253f0f0ab03a6a41d5f6058652ae6f8ec5a05dee79653e5bc"
     },
     "benchmark.ApptronikApolloTerrain.track_metric": {
-        "code": "class BenchmarkSuite:\n    def track_metric(self, metrics, fn):\n      return metrics[fn]\n\nApptronikApolloTerrain.setup_cache = lambda s: mujoco_warp.test_util.BenchmarkSuite.setup_cache(s)",
+        "code": "class BenchmarkSuite:\n    def track_metric(self, metrics, fn):\n      return metrics[fn]\n\nApptronikApolloTerrain.setup_cache = lambda s: benchmark.BenchmarkSuite.setup_cache(s)",
         "name": "benchmark.ApptronikApolloTerrain.track_metric",
         "param_names": [
             "function"
@@ -169,10 +212,10 @@
         "setup_cache_key": "benchmark:118",
         "type": "track",
         "unit": "unit",
-        "version": "cb0b9e1be020daf06b69bfbf85a8d5885e063c79d3116a5658eca366e438ada1"
+        "version": "e9e1dc07190e5bbcc36b3caf70499e88f7d5566918813cb208c44e9743ac6a05"
     },
     "benchmark.Cloth.track_metric": {
-        "code": "class BenchmarkSuite:\n    def track_metric(self, metrics, fn):\n      return metrics[fn]\n\nCloth.setup_cache = lambda s: mujoco_warp.test_util.BenchmarkSuite.setup_cache(s)",
+        "code": "class BenchmarkSuite:\n    def track_metric(self, metrics, fn):\n      return metrics[fn]\n\nCloth.setup_cache = lambda s: benchmark.BenchmarkSuite.setup_cache(s)",
         "name": "benchmark.Cloth.track_metric",
         "param_names": [
             "function"
@@ -212,10 +255,10 @@
         "setup_cache_key": "benchmark:119",
         "type": "track",
         "unit": "unit",
-        "version": "663350d5eae722492eb2137635a523568b99a10e3b8a2faaa5463d466db96abf"
+        "version": "d4bba5d180fab88f55997ec4695f00e7871f3a53403fd2f8bd0f6a58d4cc734f"
     },
     "benchmark.FrankaEmikaPanda.track_metric": {
-        "code": "class BenchmarkSuite:\n    def track_metric(self, metrics, fn):\n      return metrics[fn]\n\nFrankaEmikaPanda.setup_cache = lambda s: mujoco_warp.test_util.BenchmarkSuite.setup_cache(s)",
+        "code": "class BenchmarkSuite:\n    def track_metric(self, metrics, fn):\n      return metrics[fn]\n\nFrankaEmikaPanda.setup_cache = lambda s: benchmark.BenchmarkSuite.setup_cache(s)",
         "name": "benchmark.FrankaEmikaPanda.track_metric",
         "param_names": [
             "function"
@@ -255,10 +298,10 @@
         "setup_cache_key": "benchmark:120",
         "type": "track",
         "unit": "unit",
-        "version": "3b15d2b2032097d48a1132ff691ab98835b793dd086fdc3f890fdb3a71da1a35"
+        "version": "78c420673eaf17d4d5cf73fc1804fba64306af796aad3daa70801546575585cb"
     },
     "benchmark.Humanoid.track_metric": {
-        "code": "class BenchmarkSuite:\n    def track_metric(self, metrics, fn):\n      return metrics[fn]\n\nHumanoid.setup_cache = lambda s: mujoco_warp.test_util.BenchmarkSuite.setup_cache(s)",
+        "code": "class BenchmarkSuite:\n    def track_metric(self, metrics, fn):\n      return metrics[fn]\n\nHumanoid.setup_cache = lambda s: benchmark.BenchmarkSuite.setup_cache(s)",
         "name": "benchmark.Humanoid.track_metric",
         "param_names": [
             "function"
@@ -298,10 +341,10 @@
         "setup_cache_key": "benchmark:121",
         "type": "track",
         "unit": "unit",
-        "version": "4c5bc934452e06387900c74104b62abe79f0a73e58c152650ff7953524bccbe1"
+        "version": "ed305730125f7377d0d0a900fdce7bedaf41d9ae7431ca110e2bf493b783e5dd"
     },
     "benchmark.ThreeHumanoids.track_metric": {
-        "code": "class BenchmarkSuite:\n    def track_metric(self, metrics, fn):\n      return metrics[fn]\n\nThreeHumanoids.setup_cache = lambda s: mujoco_warp.test_util.BenchmarkSuite.setup_cache(s)",
+        "code": "class BenchmarkSuite:\n    def track_metric(self, metrics, fn):\n      return metrics[fn]\n\nThreeHumanoids.setup_cache = lambda s: benchmark.BenchmarkSuite.setup_cache(s)",
         "name": "benchmark.ThreeHumanoids.track_metric",
         "param_names": [
             "function"
@@ -341,7 +384,7 @@
         "setup_cache_key": "benchmark:122",
         "type": "track",
         "unit": "unit",
-        "version": "8bedf676f90429614e76347418abafc1a33dcb69a4cb72caedbbb67f869f99cb"
+        "version": "acfcbcedb670fb1f831d5c7a937123f167914f47c77121b66733dccc6d35dc3a"
     },
     "version": 2
 }
