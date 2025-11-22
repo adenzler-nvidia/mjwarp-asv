@@ -1,4 +1,47 @@
 {
+    "benchmark.AlohaCloth.track_metric": {
+        "code": "class BenchmarkSuite:\n    def track_metric(self, metrics, fn):\n      return metrics[fn]\n\n    def setup_cache(self):\n      module = importlib.import_module(self.__module__)\n      path = os.path.join(os.path.realpath(os.path.dirname(module.__file__)), self.path)\n      mjm = mujoco.MjModel.from_xml_path(path)\n      mjd = mujoco.MjData(mjm)\n      ctrls = None\n    \n      if self.replay:\n        keys = io.find_keys(mjm, self.replay)\n        if not keys:\n          raise ValueError(f\"Key prefix not find: {self.replay}\")\n        ctrls = io.make_trajectory(mjm, keys)\n        mujoco.mj_resetDataKeyframe(mjm, mjd, keys[0])\n    \n      if mjm.nkey > 0:\n        mujoco.mj_resetDataKeyframe(mjm, mjd, 0)\n    \n      # TODO(team): mj_forward call shouldn't be necessary, but it is\n      mujoco.mj_forward(mjm, mjd)\n    \n      wp.init()\n      if os.environ.get(\"ASV_CACHE_KERNELS\", \"false\").lower() == \"false\":\n        wp.clear_kernel_cache()\n    \n      free_before = wp.get_device().free_memory\n      m = io.put_model(mjm)\n      d = io.put_data(mjm, mjd, self.batch_size, self.nconmax, self.njmax)\n      free_after = wp.get_device().free_memory\n    \n      jit_duration, _, trace, _, _, solver_niter, _ = benchmark(forward.step, m, d, 1000, ctrls, True, False, True)\n      metrics = {\n        \"jit_duration\": jit_duration,\n        \"solver_niter_mean\": np.mean(solver_niter),\n        \"solver_niter_p95\": np.quantile(solver_niter, 0.95),\n        \"device_memory_allocated\": free_before - free_after,\n      }\n    \n      def tree_flatten(d, parent_k=\"\"):\n        ret = {}\n        steps = self.batch_size * 1000\n        for k, v in d.items():\n          k = parent_k + \".\" + k if parent_k else k\n          ret = ret | {k: 1e6 * v[0][0] / steps} | tree_flatten(v[1], k)\n        return ret\n    \n      metrics = metrics | tree_flatten(trace)\n    \n      return metrics",
+        "name": "benchmark.AlohaCloth.track_metric",
+        "param_names": [
+            "function"
+        ],
+        "params": [
+            [
+                "'jit_duration'",
+                "'solver_niter_mean'",
+                "'solver_niter_p95'",
+                "'device_memory_allocated'",
+                "'step'",
+                "'step.forward'",
+                "'step.forward.fwd_position'",
+                "'step.forward.fwd_position.kinematics'",
+                "'step.forward.fwd_position.com_pos'",
+                "'step.forward.fwd_position.camlight'",
+                "'step.forward.fwd_position.crb'",
+                "'step.forward.fwd_position.tendon_armature'",
+                "'step.forward.fwd_position.collision'",
+                "'step.forward.fwd_position.make_constraint'",
+                "'step.forward.fwd_position.transmission'",
+                "'step.forward.sensor_pos'",
+                "'step.forward.fwd_velocity'",
+                "'step.forward.fwd_velocity.com_vel'",
+                "'step.forward.fwd_velocity.passive'",
+                "'step.forward.fwd_velocity.rne'",
+                "'step.forward.fwd_velocity.tendon_bias'",
+                "'step.forward.sensor_vel'",
+                "'step.forward.fwd_actuation'",
+                "'step.forward.fwd_acceleration'",
+                "'step.forward.fwd_acceleration.xfrc_accumulate'",
+                "'step.forward.sensor_acc'",
+                "'step.forward.solve'",
+                "'step.euler'"
+            ]
+        ],
+        "setup_cache_key": "_src.benchmark:213",
+        "type": "track",
+        "unit": "unit",
+        "version": "1049e0e28ded6d6cede827c45a19db617a2ce1a9122cebde15550ae1e047764c"
+    },
     "benchmark.AlohaPot.track_metric": {
         "code": "class BenchmarkSuite:\n    def track_metric(self, metrics, fn):\n      return metrics[fn]\n\nAlohaPot.setup_cache = lambda s: benchmark.BenchmarkSuite.setup_cache(s)",
         "name": "benchmark.AlohaPot.track_metric",
@@ -37,7 +80,7 @@
                 "'step.euler'"
             ]
         ],
-        "setup_cache_key": "benchmark:115",
+        "setup_cache_key": "benchmark:125",
         "type": "track",
         "unit": "unit",
         "version": "f1865afa96e71065b1d317f432d3ba032872121714a48c3729ab0bf8049592f3"
@@ -80,7 +123,7 @@
                 "'step.euler'"
             ]
         ],
-        "setup_cache_key": "benchmark:116",
+        "setup_cache_key": "benchmark:126",
         "type": "track",
         "unit": "unit",
         "version": "119ca919ec65f5ca833f00e50a476b9fadc23b5ee069931c162ea264b875c37c"
@@ -123,7 +166,7 @@
                 "'step.euler'"
             ]
         ],
-        "setup_cache_key": "benchmark:117",
+        "setup_cache_key": "benchmark:127",
         "type": "track",
         "unit": "unit",
         "version": "9be50ac165e18bd2b33bc453433bff32452a3074708f354c9438669adec01969"
@@ -166,7 +209,7 @@
                 "'step.euler'"
             ]
         ],
-        "setup_cache_key": "benchmark:118",
+        "setup_cache_key": "benchmark:128",
         "type": "track",
         "unit": "unit",
         "version": "33efd5dbfcfd049253f0f0ab03a6a41d5f6058652ae6f8ec5a05dee79653e5bc"
@@ -209,7 +252,7 @@
                 "'step.euler'"
             ]
         ],
-        "setup_cache_key": "benchmark:119",
+        "setup_cache_key": "benchmark:129",
         "type": "track",
         "unit": "unit",
         "version": "e9e1dc07190e5bbcc36b3caf70499e88f7d5566918813cb208c44e9743ac6a05"
@@ -252,7 +295,7 @@
                 "'step.euler'"
             ]
         ],
-        "setup_cache_key": "benchmark:120",
+        "setup_cache_key": "benchmark:130",
         "type": "track",
         "unit": "unit",
         "version": "d4bba5d180fab88f55997ec4695f00e7871f3a53403fd2f8bd0f6a58d4cc734f"
@@ -295,7 +338,7 @@
                 "'step.implicit'"
             ]
         ],
-        "setup_cache_key": "benchmark:121",
+        "setup_cache_key": "benchmark:131",
         "type": "track",
         "unit": "unit",
         "version": "78c420673eaf17d4d5cf73fc1804fba64306af796aad3daa70801546575585cb"
@@ -338,7 +381,7 @@
                 "'step.euler'"
             ]
         ],
-        "setup_cache_key": "benchmark:122",
+        "setup_cache_key": "benchmark:132",
         "type": "track",
         "unit": "unit",
         "version": "ed305730125f7377d0d0a900fdce7bedaf41d9ae7431ca110e2bf493b783e5dd"
@@ -381,7 +424,7 @@
                 "'step.euler'"
             ]
         ],
-        "setup_cache_key": "benchmark:123",
+        "setup_cache_key": "benchmark:133",
         "type": "track",
         "unit": "unit",
         "version": "acfcbcedb670fb1f831d5c7a937123f167914f47c77121b66733dccc6d35dc3a"
